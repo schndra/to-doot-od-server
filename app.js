@@ -1,4 +1,5 @@
 import "dotenv/config";
+
 import express from "express";
 const app = express();
 
@@ -6,9 +7,12 @@ const app = express();
 import notFoundMiddleware from "./middleware/not-found.js";
 import errorHandlerMiddleware from "./middleware/error-handler.js";
 
-app.use("/", (req, res) => {
-  res.send("hello its working");
+// routes
+app.get("/", (req, res) => {
+  res.send("<h1>checking routes</h1><a href='/api/v1/todo'>ToDo Route</a>");
 });
+
+// app routes
 
 // looks for the req that does not match the routes
 app.use(notFoundMiddleware);
@@ -16,4 +20,14 @@ app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);
 
 const port = process.env.PORT || 5000;
-app.listen(port, () => console.log(`server is listening on ${port}`));
+
+const start = async () => {
+  try {
+    // connect DB
+    app.listen(port, console.log(`server is listening on ${port}...`));
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+start();
