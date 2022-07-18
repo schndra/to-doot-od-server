@@ -1,5 +1,7 @@
 import "dotenv/config";
 
+import "express-async-errors";
+
 import express from "express";
 const app = express();
 
@@ -9,6 +11,8 @@ import todosRouter from "./routes/todos.js";
 //middleware
 import notFoundMiddleware from "./middleware/not-found.js";
 import errorHandlerMiddleware from "./middleware/error-handler.js";
+
+app.use(express.json());
 
 // routes
 app.get("/", (req, res) => {
