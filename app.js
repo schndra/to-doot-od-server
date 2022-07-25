@@ -5,6 +5,8 @@ import "express-async-errors";
 import express from "express";
 const app = express();
 
+import cors from "cors";
+
 import connectDB from "./config/connect.js";
 import todosRouter from "./routes/todos.js";
 
@@ -12,6 +14,7 @@ import todosRouter from "./routes/todos.js";
 import notFoundMiddleware from "./middleware/not-found.js";
 import errorHandlerMiddleware from "./middleware/error-handler.js";
 
+app.use(cors());
 app.use(express.json());
 
 // routes
